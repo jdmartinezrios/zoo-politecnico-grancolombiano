@@ -1,0 +1,9 @@
+export { default as Navbar } from './Navbar';
+export { default as Footer } from './Footer';
+export { default as Wrapper } from './Wrapper';
+export { default as InputText } from './InputText';
+export { default as Button } from './Button';
+export { default as Loader } from './Loader';
+export { default as SelectOptions } from './SelectOptions';
+export { default as TextArea } from './TextArea';
+export { default as Delete } from './Delete';

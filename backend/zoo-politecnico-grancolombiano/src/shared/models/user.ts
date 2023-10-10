@@ -7,8 +7,8 @@ export class User extends Model {
   declare password: string;
   declare role: string;
   declare fullname: string;
-  declare created_at: Date;
-  declare updated_at: Date;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 User.init(
@@ -32,7 +32,7 @@ User.init(
     },
     createdAt: {
       field: 'created_at',
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
     },
     updatedAt: {
       field: 'updated_at',

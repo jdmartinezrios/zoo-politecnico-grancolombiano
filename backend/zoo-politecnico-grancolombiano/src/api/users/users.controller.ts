@@ -13,6 +13,8 @@ export class UsersController {
   public static route(router: Router): Router {
     router.get('/users', this.getUsers.bind(this));
     router.post('/users', this.createUser.bind(this));
+    router.put('/users', this.updateUser.bind(this));
+    router.delete('/users/:id', this.deleteUser.bind(this));
     return router;
   }
 
@@ -41,6 +43,27 @@ export class UsersController {
     try {
       const users: User[] = await this.userService.getAllUsers();
       res.json(users);
+    } catch (error) {
+      const errorMessage = new ResponsetError(error, HTTP_STATUS.BAD_REQUEST);
+      res.status(HTTP_STATUS.BAD_REQUEST).json(errorMessage);
+    }
+  }
+
+  private static async updateUser(req: Request, res: Response): Promise<void> {
+    try {
+      const user = await this.userService.updateUser(req.body as IUser);
+      res.json(user);
+    } catch (error) {
+      const errorMessage = new ResponsetError(error, HTTP_STATUS.BAD_REQUEST);
+      res.status(HTTP_STATUS.BAD_REQUEST).json(errorMessage);
+    }
+  }
+
+  private static async deleteUser(req: Request, res: Response): Promise<void> {
+    try {
+      const { id: userId } = req.params;
+      const user = await this.userService.deleteUser(Number(userId));
+      res.json(user);
     } catch (error) {
       const errorMessage = new ResponsetError(error, HTTP_STATUS.BAD_REQUEST);
       res.status(HTTP_STATUS.BAD_REQUEST).json(errorMessage);
