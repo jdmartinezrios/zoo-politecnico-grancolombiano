@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# system
+.DS_Store
+.env
+Thumbs.db

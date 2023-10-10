@@ -4,7 +4,10 @@ import { UserService } from './domain';
 
 export class UserServiceImpl extends UserService {
   public async getAllUsers(): Promise<User[]> {
-    const users = await User.findAll({ attributes: { exclude: ['password'] } });
+    const users = await User.findAll({
+      order: [['created_at', 'DESC']],
+      attributes: { exclude: ['password'] },
+    });
     return users;
   }
 
@@ -22,12 +25,19 @@ export class UserServiceImpl extends UserService {
   }
 
   public async createUser(user: IUser): Promise<User> {
-    const createdUser = await User.create({
-      role: user.role,
-      email: user.email,
-      password: user.password,
-      fullname: user.fullname,
-    });
+    const createdUser = await User.create({ ...user });
     return createdUser;
+  }
+
+  public async updateUser(user: IUser): Promise<[affectedRows: number]> {
+    const createdUser = await User.update({ ...user }, { where: { id: user.id } });
+    return createdUser;
+  }
+
+  public async deleteUser(userId: number): Promise<unknown> {
+    const deletedUser = await User.destroy({
+      where: { id: userId },
+    });
+    return deletedUser;
   }
 }

@@ -50,14 +50,14 @@ ADD
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE
-  `animals`
+  `reports`
 ADD
-  FOREIGN KEY (`id`) REFERENCES `reports` (`animal_id`);
+  FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`);
 
 ALTER TABLE
-  `users`
+  `reports`
 ADD
-  FOREIGN KEY (`id`) REFERENCES `reports` (`user_id`);
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE
   `attentions`

@@ -1,0 +1,10 @@
+export { default as Loginpage } from './Login';
+export { default as DashboardPage } from './Dashboard';
+export { default as UsersPage } from './Users';
+export { default as AnimalsPage } from './Animals';
+export { default as AddUserPage } from './AddUser';
+export { default as AddAnimalPage } from './AddAnimal';
+export { default as ReportsPage } from './Reports';
+export { default as AddReportPage } from './AddReport';
+export { default as AttentionsPage } from './Attentions';
+export { default as AddAttentionPage } from './AddAttention';

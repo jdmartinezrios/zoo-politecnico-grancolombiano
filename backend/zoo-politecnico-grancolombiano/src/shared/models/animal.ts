@@ -1,9 +1,11 @@
 import { DataTypes, Model } from 'sequelize';
 import { databaseConnection } from '../../connections/database';
+import { User } from './user';
 
 export class Animal extends Model {
   declare id: number;
-  declare species: string;
+  declare name: string;
+  declare specie: string;
   declare user_id: number;
   declare habitat: string;
   declare food_type: string;
@@ -13,8 +15,8 @@ export class Animal extends Model {
   declare medicines: string;
   declare animal_grooming_needs: string;
   declare habitat_grooming_needs: string;
-  declare created_at: Date;
-  declare updated_at: Date;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 Animal.init(
@@ -27,8 +29,15 @@ Animal.init(
     specie: {
       type: DataTypes.STRING,
     },
+    name: {
+      type: DataTypes.STRING,
+    },
     user_id: {
       type: DataTypes.INTEGER,
+      references: {
+        key: 'id',
+        model: User,
+      },
     },
     habitat: {
       type: DataTypes.STRING,
@@ -56,7 +65,7 @@ Animal.init(
     },
     createdAt: {
       field: 'created_at',
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
     },
     updatedAt: {
       field: 'updated_at',
